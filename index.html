@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Etch-A-Sketch</title>
+        <link rel='stylesheet' type='text/css' href='style.css'/>
+    </head>
+    <body>
+        <div id='gridContainer'></div>
+    </body>
+    <script>
+        for(i = 1; i <= 256; i++) {
+            let gridContainerSelector = document.querySelector('#gridContainer');
+            let newDiv = document.createElement('div');
+            let divName = "div" + i;
+            let newDivContent = document.createTextNode(i);
+            newDiv.setAttribute('id', 'div' + i);
+            newDiv.appendChild(newDivContent);
+            gridContainerSelector.appendChild(newDiv);
+            newDiv.addEventListener('mouseover', function() {
+                document.getElementById(divName).style.backgroundColor = 'lightgreen';
+            });
+        }
+    </script>
+</html>
