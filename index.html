@@ -12,12 +12,13 @@
             let gridContainerSelector = document.querySelector('#gridContainer');
             let newDiv = document.createElement('div');
             let divName = "div" + i;
-            let newDivContent = document.createTextNode(i);
+            let newDivContent = document.createElement('p');
+            newDivContent.textContent = '';
             newDiv.setAttribute('id', 'div' + i);
             newDiv.appendChild(newDivContent);
             gridContainerSelector.appendChild(newDiv);
             newDiv.addEventListener('mouseover', function() {
-                document.getElementById(divName).style.backgroundColor = 'lightgreen';
+                document.getElementById(divName).style.background = 'lightgreen';
             });
         }
     </script>
