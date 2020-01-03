@@ -8,18 +8,27 @@
         <div id='gridContainer'></div>
     </body>
     <script>
-        for(i = 1; i <= 256; i++) {
-            let gridContainerSelector = document.querySelector('#gridContainer');
-            let newDiv = document.createElement('div');
-            let divName = "div" + i;
-            let newDivContent = document.createElement('p');
-            newDivContent.textContent = '';
-            newDiv.setAttribute('id', 'div' + i);
-            newDiv.appendChild(newDivContent);
-            gridContainerSelector.appendChild(newDiv);
-            newDiv.addEventListener('mouseover', function() {
+        generateGrid(chooseNumberOfSquaresPerSide());
+        function chooseNumberOfSquaresPerSide() {
+            userNumberSelection = prompt('How long do you want each side to be?');
+            numberOfSquaresPerSide = parseInt(userNumberSelection, 10);
+            numberOfTotalSquares = numberOfSquaresPerSide * numberOfSquaresPerSide;
+            return numberOfTotalSquares;
+        }
+        function generateGrid(numerOfTotalSquares) {
+            for(i = 1; i <= numberOfTotalSquares; i++) {
+                let gridContainerSelector = document.querySelector('#gridContainer');
+                let newDiv = document.createElement('div');
+                let divName = "div" + i;
+                let newDivContent = document.createElement('p');
+                newDivContent.textContent = '';
+                newDiv.setAttribute('id', 'div' + i);
+                newDiv.appendChild(newDivContent);
+                gridContainerSelector.appendChild(newDiv);
+                newDiv.addEventListener('mouseover', function() {
                 document.getElementById(divName).style.background = 'lightgreen';
             });
+            }
         }
     </script>
 </html>
