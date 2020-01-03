@@ -12,8 +12,13 @@
         function chooseNumberOfSquaresPerSide() {
             userNumberSelection = prompt('How long do you want each side to be?');
             numberOfSquaresPerSide = parseInt(userNumberSelection, 10);
-            numberOfTotalSquares = numberOfSquaresPerSide * numberOfSquaresPerSide;
-            return numberOfTotalSquares;
+            if(isNaN(numberOfSquaresPerSide)) {
+                alert('Please enter a numerical value. No letters!');
+                generateGrid(chooseNumberOfSquaresPerSide());
+            } else {
+                numberOfTotalSquares = numberOfSquaresPerSide * numberOfSquaresPerSide;
+                return numberOfTotalSquares;
+            }
         }
         function generateGrid(numerOfTotalSquares) {
             for(i = 1; i <= numberOfTotalSquares; i++) {
