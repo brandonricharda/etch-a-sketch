@@ -5,7 +5,9 @@
         <link rel='stylesheet' type='text/css' href='style.css'/>
     </head>
     <body>
-        <div id='gridContainer'></div>
+        <div id='sketchArea'>
+            <div id='gridContainer'></div>
+        </div>
     </body>
     <script>
         let userNumberSelection = 0;
@@ -30,8 +32,6 @@
                 let newDivContent = document.createElement('p');
                 newDivContent.textContent = "";
                 newDiv.setAttribute('id', 'div' + i);
-                newDiv.style.width = '100%';
-                newDiv.style.paddingBottom = '100%';
                 newDiv.appendChild(newDivContent);
                 gridContainerSelector.appendChild(newDiv);
                 newDiv.addEventListener('mouseover', function() {
