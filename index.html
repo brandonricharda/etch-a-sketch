@@ -8,9 +8,11 @@
         <div id='gridContainer'></div>
     </body>
     <script>
-        generateGrid(chooseNumberOfSquaresPerSide());
+        let userNumberSelection = 0;
+        generateDivs(chooseNumberOfSquaresPerSide());
+        defineGrid();
         function chooseNumberOfSquaresPerSide() {
-            userNumberSelection = prompt('How long do you want each side to be?');
+            userNumberSelection = prompt('How many squares do you want each side to have?');
             numberOfSquaresPerSide = parseInt(userNumberSelection, 10);
             if(isNaN(numberOfSquaresPerSide)) {
                 alert('Please enter a numerical value. No letters!');
@@ -20,20 +22,28 @@
                 return numberOfTotalSquares;
             }
         }
-        function generateGrid(numerOfTotalSquares) {
+        function generateDivs(numerOfTotalSquares) {
             for(i = 1; i <= numberOfTotalSquares; i++) {
                 let gridContainerSelector = document.querySelector('#gridContainer');
                 let newDiv = document.createElement('div');
                 let divName = "div" + i;
                 let newDivContent = document.createElement('p');
-                newDivContent.textContent = '';
+                newDivContent.textContent = "";
                 newDiv.setAttribute('id', 'div' + i);
+                newDiv.style.width = '100%';
+                newDiv.style.paddingBottom = '100%';
                 newDiv.appendChild(newDivContent);
                 gridContainerSelector.appendChild(newDiv);
                 newDiv.addEventListener('mouseover', function() {
                 document.getElementById(divName).style.background = 'lightgreen';
-            });
+                });
             }
+        }
+        function defineGrid() {
+            let x = userNumberSelection;
+            let layout = document.getElementById('gridContainer');
+            layout.style.display = 'grid';
+            layout.style.gridTemplateColumns = 'repeat(' + x + ', 1fr)';
         }
     </script>
 </html>
