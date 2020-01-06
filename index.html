@@ -5,7 +5,11 @@
         <link rel='stylesheet' type='text/css' href='style.css'/>
     </head>
     <body>
-        <div id='sketchArea'>
+        <div id='controls'>
+            <button id='reset'>Reset</button>
+            <button id='new'>New Grid</button>
+        </div>
+        <div id='sketchWindow'>
             <div id='gridContainer'></div>
         </div>
     </body>
@@ -13,6 +17,16 @@
         let userNumberSelection = 0;
         generateDivs(chooseNumberOfSquaresPerSide());
         defineGrid();
+        let resetButton = document.querySelector('#reset');
+        let newButton = document.querySelector('#new');
+        resetButton.addEventListener('click', function () {
+            resetSketchPad();
+        });
+        newButton.addEventListener('click', function() {
+            destroyDivs();
+            generateDivs(chooseNumberOfSquaresPerSide());
+            defineGrid();
+        });
         function chooseNumberOfSquaresPerSide() {
             userNumberSelection = prompt('How many squares do you want each side to have?');
             numberOfSquaresPerSide = parseInt(userNumberSelection, 10);
@@ -37,6 +51,19 @@
                 newDiv.addEventListener('mouseover', function() {
                 document.getElementById(divName).style.background = 'lightgreen';
                 });
+            }
+        }
+        function destroyDivs() {
+            for(i = 1; i <= numberOfTotalSquares; i++) {
+                let divName = "div" + i;
+                let divToBeRemoved = document.getElementById(divName);
+                divToBeRemoved.parentNode.removeChild(divToBeRemoved);
+            }
+        }
+        function resetSketchPad() {
+            for(i = 1; i <= numberOfTotalSquares; i++) {
+                let divName = "div" + i;
+                document.getElementById(divName).style.background = '';
             }
         }
         function defineGrid() {
