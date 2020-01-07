@@ -39,7 +39,7 @@
             }
         }
         function generateDivs(numerOfTotalSquares) {
-            for(i = 1; i <= numberOfTotalSquares; i++) {
+            for (i = 1; i <= numberOfTotalSquares; i++) {
                 let gridContainerSelector = document.querySelector('#gridContainer');
                 let newDiv = document.createElement('div');
                 let divName = "div" + i;
@@ -48,8 +48,11 @@
                 newDiv.setAttribute('id', 'div' + i);
                 newDiv.appendChild(newDivContent);
                 gridContainerSelector.appendChild(newDiv);
+                let dynamicOpacity = 0.1;
                 newDiv.addEventListener('mouseover', function() {
                 document.getElementById(divName).style.background = 'lightgreen';
+                dynamicOpacity += 0.1;
+                document.getElementById(divName).style.opacity = dynamicOpacity;
                 });
             }
         }
