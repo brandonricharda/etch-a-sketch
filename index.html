@@ -6,8 +6,8 @@
     </head>
     <body>
         <div id='controls'>
-            <button id='reset'>Reset</button>
-            <button id='new'>New Grid</button>
+            <button id='reset'>Clear Grid</button>
+            <button id='resize'>Resize Grid</button>
         </div>
         <div id='sketchWindow'>
             <div id='gridContainer'></div>
@@ -18,11 +18,11 @@
         generateDivs(chooseNumberOfSquaresPerSide());
         defineGrid();
         let resetButton = document.querySelector('#reset');
-        let newButton = document.querySelector('#new');
+        let resizeButton = document.querySelector('#resize');
         resetButton.addEventListener('click', function () {
-            resetSketchPad();
+            clearPad();
         });
-        newButton.addEventListener('click', function() {
+        resizeButton.addEventListener('click', function () {
             destroyDivs();
             generateDivs(chooseNumberOfSquaresPerSide());
             defineGrid();
@@ -38,7 +38,7 @@
                 return numberOfTotalSquares;
             }
         }
-        function generateDivs(numerOfTotalSquares) {
+        function generateDivs(numberOfTotalSquares) {
             for (i = 1; i <= numberOfTotalSquares; i++) {
                 let gridContainerSelector = document.querySelector('#gridContainer');
                 let newDiv = document.createElement('div');
@@ -48,13 +48,13 @@
                 newDiv.setAttribute('id', 'div' + i);
                 newDiv.appendChild(newDivContent);
                 gridContainerSelector.appendChild(newDiv);
-                let dynamicOpacity = 0.1;
-                newDiv.addEventListener('mouseover', function() {
-                document.getElementById(divName).style.background = 'lightgreen';
-                dynamicOpacity += 0.1;
-                document.getElementById(divName).style.opacity = dynamicOpacity;
-                });
             }
+        }
+        function defineGrid() {
+            let x = userNumberSelection;
+            let layout = document.getElementById('gridContainer');
+            layout.style.display = 'grid';
+            layout.style.gridTemplateColumns = 'repeat(' + x + ', 1fr)';
         }
         function destroyDivs() {
             for(i = 1; i <= numberOfTotalSquares; i++) {
@@ -63,17 +63,52 @@
                 divToBeRemoved.parentNode.removeChild(divToBeRemoved);
             }
         }
-        function resetSketchPad() {
+        function clearPad() {
             for(i = 1; i <= numberOfTotalSquares; i++) {
                 let divName = "div" + i;
                 document.getElementById(divName).style.background = '';
             }
         }
-        function defineGrid() {
-            let x = userNumberSelection;
-            let layout = document.getElementById('gridContainer');
-            layout.style.display = 'grid';
-            layout.style.gridTemplateColumns = 'repeat(' + x + ', 1fr)';
+        function defaultFill() {
+            let numberOfTotalSquares = userNumberSelection * userNumberSelection;
+            for (i = 1; i <= numberOfTotalSquares; i++) {
+                let divName = "div" + i;
+                let divToUpdate = document.getElementById(divName);
+                divToUpdate.addEventListener('mouseover', function () {
+                    divToUpdate.style.background = 'lightgreen';
+                });
+            }
+        }
+        function shadedFill() {
+            let numberOfTotalSquares = userNumberSelection * userNumberSelection;
+            for (i = 1; i <= numberOfTotalSquares; i++) {
+                let divName = "div" + i;
+                let divToUpdate = document.getElementById(divName);
+                let dynamicOpacity = 0.1;
+                divToUpdate.addEventListener('mouseover', function () {
+                    divToUpdate.style.background = 'lightgreen';
+                    dynamicOpacity += 0.1;
+                    divToUpdate.style.opacity = dynamicOpacity;
+                });
+            }
+        }
+        function generateRandomColor() {
+            let randomColor = '#';
+            let hexUnits = '0123456789ABCDEF';
+            for (i = 0; i < 6; i++) {
+                randomColor += hexUnits[Math.floor(Math.random() * 16)];
+            }
+            return randomColor;
+        }
+        function rainbowFill() {
+            let numberOfTotalSquares = userNumberSelection * userNumberSelection;
+            for (i = 1; i <= numberOfTotalSquares; i++) {
+                let divName = "div" + i;
+                let divToUpdate = document.getElementById(divName);
+                divToUpdate.addEventListener('mouseover', function () {
+                    divToUpdate.style.background = generateRandomColor();
+                });
+            }
         }
     </script>
 </html>
