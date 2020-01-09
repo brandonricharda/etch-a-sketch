@@ -5,20 +5,39 @@
         <link rel='stylesheet' type='text/css' href='style.css'/>
     </head>
     <body>
+        <div id='sketchWindow'>
+            <div id='gridContainer'></div>
+        </div>
         <div id='controls'>
             <button id='reset'>Clear Grid</button>
             <button id='resize'>Resize Grid</button>
-        </div>
-        <div id='sketchWindow'>
-            <div id='gridContainer'></div>
+            <button id='default'>Default Fill</button>
+            <button id='rainbow'>Rainbow Fill</button>
+            <button id='shaded'>Shaded Fill</button>
         </div>
     </body>
     <script>
         let userNumberSelection = 0;
         generateDivs(chooseNumberOfSquaresPerSide());
         defineGrid();
+        defaultFill();
         let resetButton = document.querySelector('#reset');
         let resizeButton = document.querySelector('#resize');
+        let defaultButton = document.querySelector('#default');
+        let rainbowButton = document.querySelector('#rainbow');
+        let shadedButton = document.querySelector('#shaded');
+        defaultButton.addEventListener('click', function () {
+            clearPad();
+            defaultFill();
+        });
+        rainbowButton.addEventListener('click', function () {
+            clearPad();
+            rainbowFill();
+        });
+        shadedButton.addEventListener('click', function () {
+            clearPad();
+            shadedFill();
+        });
         resetButton.addEventListener('click', function () {
             clearPad();
         });
@@ -26,6 +45,7 @@
             destroyDivs();
             generateDivs(chooseNumberOfSquaresPerSide());
             defineGrid();
+            defaultFill();
         });
         function chooseNumberOfSquaresPerSide() {
             userNumberSelection = prompt('How many squares do you want each side to have?');
