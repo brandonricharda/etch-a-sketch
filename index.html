@@ -5,6 +5,7 @@
         <link rel='stylesheet' type='text/css' href='style.css'/>
     </head>
     <body>
+        <H1>Etch-A-Sketch</H1>
         <div id='sketchWindow'>
             <div id='gridContainer'></div>
         </div>
@@ -52,7 +53,7 @@
             numberOfSquaresPerSide = parseInt(userNumberSelection, 10);
             if(isNaN(numberOfSquaresPerSide)) {
                 alert('Please enter a numerical value. No letters!');
-                generateGrid(chooseNumberOfSquaresPerSide());
+                generateDivs(chooseNumberOfSquaresPerSide()); 
             } else {
                 numberOfTotalSquares = numberOfSquaresPerSide * numberOfSquaresPerSide;
                 return numberOfTotalSquares;
