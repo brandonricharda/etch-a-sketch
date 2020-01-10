@@ -54,6 +54,9 @@
             if(isNaN(numberOfSquaresPerSide)) {
                 alert('Please enter a numerical value. No letters!');
                 generateDivs(chooseNumberOfSquaresPerSide()); 
+            } else if (userNumberSelection > 100) {
+                alert('Please choose a number between 1 and 100');
+                generateDivs(chooseNumberOfSquaresPerSide()); 
             } else {
                 numberOfTotalSquares = numberOfSquaresPerSide * numberOfSquaresPerSide;
                 return numberOfTotalSquares;
@@ -97,6 +100,8 @@
                 let divToUpdate = document.getElementById(divName);
                 divToUpdate.addEventListener('mouseover', function () {
                     divToUpdate.style.background = 'lightgreen';
+                    divToUpdate.style.opacity = 1;
+                    divToUpdate.style.transitionDuration = '0.1s';
                 });
             }
         }
@@ -110,6 +115,7 @@
                     divToUpdate.style.background = 'lightgreen';
                     dynamicOpacity += 0.1;
                     divToUpdate.style.opacity = dynamicOpacity;
+                    divToUpdate.style.transitionDuration = '0.1s';
                 });
             }
         }
@@ -128,6 +134,7 @@
                 let divToUpdate = document.getElementById(divName);
                 divToUpdate.addEventListener('mouseover', function () {
                     divToUpdate.style.background = generateRandomColor();
+                    divToUpdate.style.transitionDuration = '0.1s';
                 });
             }
         }
