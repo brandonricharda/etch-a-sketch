@@ -1,2 +1,5 @@
 # etch-a-sketch
-The purpose of this project is to create an etch-a-sketch platform that accepts user input concerning grid size and type of coloring. 
+
+This is my solution to the Etch-A-Sketch assignment from The Odin Project:
+
+https://www.theodinproject.com/courses/web-development-101/lessons/etch-a-sketch-project
